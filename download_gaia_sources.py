@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 
-def get_source_urls(count):
+def get_source_urls(start, stop):
     url = "https://cdn.gea.esac.esa.int/Gaia/gdr2/gaia_source/csv/"
     response = requests.get(url)
 
@@ -17,8 +17,8 @@ def get_source_urls(count):
     # Filter to only have GaiaSource filenames
     all_source_filenames = filter(lambda a: "GaiaSource" in a, links)
 
-    # Grab first <count>
-    source_filenames = list(all_source_filenames)[:count]
+    # Grab start:stop
+    source_filenames = list(all_source_filenames)[start:stop]
 
     # Create full source urls
     source_urls = [urljoin(url, filename) for filename in source_filenames]
@@ -57,12 +57,13 @@ def main():
     directory = sys.argv[1]
 
     # Specify number of urls to grab for downloading
-    count = 5
-    if len(sys.argv) == 3:
-        count = int(sys.argv[2])
+    start, stop = 0, 6
+    if len(sys.argv) == 4:
+        start = int(sys.argv[2])
+        stop = int(sys.argv[3])
 
     # Scrape page for source urls
-    source_urls = get_source_urls(count)
+    source_urls = get_source_urls(start, stop)
 
     # Download and save
     download_to_dir(source_urls, directory)

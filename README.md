@@ -17,4 +17,4 @@ This program downloads `.csv.gz` archives from `gda2/` under the Gaia ESA Archvi
 Args:
 
 - A directory to contain the download files. A directory will be created if the it does not already exist.
-- An optional count, specifying the number of `.csv.gz` files to download. Note: each csv contains multiple millions of rows.
+- An optional start and stop, specifying the start and stop index of `.csv.gz` files to download. Note: each csv contains multiple millions of rows.
