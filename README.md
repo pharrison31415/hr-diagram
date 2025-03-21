@@ -1,6 +1,6 @@
 # Hertzsprung-Russell (HR) Diagram
 
-This repository contains tools for downloading data from the [Gaia ESA Archive](https://gea.esac.esa.int/archive/) and generating HR diagrams from that data.
+This repository contains tools for generating [HR diagrams](https://en.wikipedia.org/wiki/Hertzsprung%E2%80%93Russell_diagram) and downloading star data from the [Gaia ESA Archive](https://gea.esac.esa.int/archive/).
 
 ## `hr.py`
 
