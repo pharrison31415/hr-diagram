@@ -18,8 +18,7 @@ def generate_HR(csv_files):
     df = df.dropna(subset=["teff_val",
                            "phot_g_mean_mag",
                            "parallax",
-                           "phot_bp_mean_mag",
-                           "phot_rp_mean_mag",
+                           "bp_rp",
                            ])
 
     # Drop rows that have non-positive parallax
@@ -29,17 +28,13 @@ def generate_HR(csv_files):
     teff = df["teff_val"]               # Temperature in Kelvin
     app_mag = df["phot_g_mean_mag"]     # Apparent G-band magnitude
     parallax = df["parallax"]           # Parallax in milliarcseconds
-    bp_mag = df["phot_bp_mean_mag"]     # Apparent BP-band magnitude
-    rp_mag = df["phot_rp_mean_mag"]     # Apparent RP-band magnitude
+    bp_rp_color = df["bp_rp"]           # BP-RP color index
 
     # Distance in parsecs
     distance = 1000 / parallax
 
     # Absolute magnitude
     abs_mag = app_mag - 5 * (np.log10(distance) - 1)
-
-    # BP-RP color index
-    bp_rp_color = bp_mag - rp_mag
 
     # Make the plot look pretty
     plt.gca().invert_yaxis()
